@@ -76,6 +76,26 @@ namespace GraphicsController {
 	private: System::Windows::Forms::TextBox^ textBoxClockFontSize;
 	private: System::Windows::Forms::Label^ label11;
 	private: System::Windows::Forms::Timer^ clockTimer;
+	private: System::Windows::Forms::Label^ label12;
+	private: System::Windows::Forms::Label^ label13;
+	private: System::Windows::Forms::Button^ btnDrawTextWithLines;
+	private: System::Windows::Forms::TextBox^ textBoxTextLinesX;
+	private: System::Windows::Forms::TextBox^ textBoxTextLinesY;
+	private: System::Windows::Forms::TextBox^ textBoxTextColorLines;
+
+	private: System::Windows::Forms::TextBox^ textBoxTextLines;
+
+
+
+
+
+	private: System::Windows::Forms::Label^ label14;
+	private: System::Windows::Forms::Label^ label15;
+	private: System::Windows::Forms::Label^ label16;
+
+	private: System::Windows::Forms::Label^ label18;
+
+
 
 
 
@@ -143,6 +163,17 @@ namespace GraphicsController {
 			this->textBoxClockFontSize = (gcnew System::Windows::Forms::TextBox());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->clockTimer = (gcnew System::Windows::Forms::Timer(this->components));
+			this->label12 = (gcnew System::Windows::Forms::Label());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->btnDrawTextWithLines = (gcnew System::Windows::Forms::Button());
+			this->textBoxTextLinesX = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxTextLinesY = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxTextColorLines = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxTextLines = (gcnew System::Windows::Forms::TextBox());
+			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->label18 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// commandComboBox
@@ -163,7 +194,7 @@ namespace GraphicsController {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(222, 432);
+			this->button1->Location = System::Drawing::Point(174, 435);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(153, 58);
 			this->button1->TabIndex = 2;
@@ -265,15 +296,15 @@ namespace GraphicsController {
 			this->label7->AutoSize = true;
 			this->label7->Location = System::Drawing::Point(35, 13);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(269, 16);
+			this->label7->Size = System::Drawing::Size(169, 16);
 			this->label7->TabIndex = 14;
-			this->label7->Text = L"Виберіть команду та введіть параметри";
+			this->label7->Text = L"Список основних команд";
 			// 
 			// btnStartClock
 			// 
-			this->btnStartClock->Location = System::Drawing::Point(411, 193);
+			this->btnStartClock->Location = System::Drawing::Point(408, 202);
 			this->btnStartClock->Name = L"btnStartClock";
-			this->btnStartClock->Size = System::Drawing::Size(177, 33);
+			this->btnStartClock->Size = System::Drawing::Size(180, 33);
 			this->btnStartClock->TabIndex = 15;
 			this->btnStartClock->Text = L"Показати час";
 			this->btnStartClock->UseVisualStyleBackColor = true;
@@ -282,7 +313,7 @@ namespace GraphicsController {
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(454, 35);
+			this->label8->Location = System::Drawing::Point(454, 44);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(18, 16);
 			this->label8->TabIndex = 16;
@@ -290,14 +321,14 @@ namespace GraphicsController {
 			// 
 			// textBoxClockX
 			// 
-			this->textBoxClockX->Location = System::Drawing::Point(488, 32);
+			this->textBoxClockX->Location = System::Drawing::Point(488, 41);
 			this->textBoxClockX->Name = L"textBoxClockX";
 			this->textBoxClockX->Size = System::Drawing::Size(100, 22);
 			this->textBoxClockX->TabIndex = 17;
 			// 
 			// textBoxClockY
 			// 
-			this->textBoxClockY->Location = System::Drawing::Point(488, 70);
+			this->textBoxClockY->Location = System::Drawing::Point(488, 79);
 			this->textBoxClockY->Name = L"textBoxClockY";
 			this->textBoxClockY->Size = System::Drawing::Size(100, 22);
 			this->textBoxClockY->TabIndex = 18;
@@ -305,7 +336,7 @@ namespace GraphicsController {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(453, 73);
+			this->label9->Location = System::Drawing::Point(453, 82);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(19, 16);
 			this->label9->TabIndex = 19;
@@ -313,7 +344,7 @@ namespace GraphicsController {
 			// 
 			// textBoxColor
 			// 
-			this->textBoxColor->Location = System::Drawing::Point(488, 113);
+			this->textBoxColor->Location = System::Drawing::Point(488, 122);
 			this->textBoxColor->Name = L"textBoxColor";
 			this->textBoxColor->Size = System::Drawing::Size(100, 22);
 			this->textBoxColor->TabIndex = 20;
@@ -321,7 +352,7 @@ namespace GraphicsController {
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(430, 116);
+			this->label10->Location = System::Drawing::Point(430, 125);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(42, 16);
 			this->label10->TabIndex = 21;
@@ -329,7 +360,7 @@ namespace GraphicsController {
 			// 
 			// textBoxClockFontSize
 			// 
-			this->textBoxClockFontSize->Location = System::Drawing::Point(488, 156);
+			this->textBoxClockFontSize->Location = System::Drawing::Point(488, 165);
 			this->textBoxClockFontSize->Name = L"textBoxClockFontSize";
 			this->textBoxClockFontSize->Size = System::Drawing::Size(100, 22);
 			this->textBoxClockFontSize->TabIndex = 22;
@@ -337,16 +368,119 @@ namespace GraphicsController {
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(405, 159);
+			this->label11->Location = System::Drawing::Point(405, 168);
 			this->label11->Name = L"label11";
 			this->label11->Size = System::Drawing::Size(63, 16);
 			this->label11->TabIndex = 23;
 			this->label11->Text = L"Font size:";
 			// 
+			// label12
+			// 
+			this->label12->AutoSize = true;
+			this->label12->Location = System::Drawing::Point(405, 13);
+			this->label12->Name = L"label12";
+			this->label12->Size = System::Drawing::Size(135, 16);
+			this->label12->TabIndex = 24;
+			this->label12->Text = L"Показати годинник";
+			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(408, 260);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(166, 16);
+			this->label13->TabIndex = 25;
+			this->label13->Text = L"Малювати текст лініями ";
+			// 
+			// btnDrawTextWithLines
+			// 
+			this->btnDrawTextWithLines->Location = System::Drawing::Point(411, 456);
+			this->btnDrawTextWithLines->Name = L"btnDrawTextWithLines";
+			this->btnDrawTextWithLines->Size = System::Drawing::Size(177, 37);
+			this->btnDrawTextWithLines->TabIndex = 26;
+			this->btnDrawTextWithLines->Text = L"Намалювати текст";
+			this->btnDrawTextWithLines->UseVisualStyleBackColor = true;
+			this->btnDrawTextWithLines->Click += gcnew System::EventHandler(this, &MyForm::btnDrawTextWithLines_Click_1);
+			// 
+			// textBoxTextLinesX
+			// 
+			this->textBoxTextLinesX->Location = System::Drawing::Point(491, 292);
+			this->textBoxTextLinesX->Name = L"textBoxTextLinesX";
+			this->textBoxTextLinesX->Size = System::Drawing::Size(100, 22);
+			this->textBoxTextLinesX->TabIndex = 27;
+			// 
+			// textBoxTextLinesY
+			// 
+			this->textBoxTextLinesY->Location = System::Drawing::Point(491, 330);
+			this->textBoxTextLinesY->Name = L"textBoxTextLinesY";
+			this->textBoxTextLinesY->Size = System::Drawing::Size(100, 22);
+			this->textBoxTextLinesY->TabIndex = 28;
+			// 
+			// textBoxTextColorLines
+			// 
+			this->textBoxTextColorLines->Location = System::Drawing::Point(491, 375);
+			this->textBoxTextColorLines->Name = L"textBoxTextColorLines";
+			this->textBoxTextColorLines->Size = System::Drawing::Size(100, 22);
+			this->textBoxTextColorLines->TabIndex = 29;
+			// 
+			// textBoxTextLines
+			// 
+			this->textBoxTextLines->Location = System::Drawing::Point(491, 412);
+			this->textBoxTextLines->Name = L"textBoxTextLines";
+			this->textBoxTextLines->Size = System::Drawing::Size(100, 22);
+			this->textBoxTextLines->TabIndex = 31;
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Location = System::Drawing::Point(444, 298);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(18, 16);
+			this->label14->TabIndex = 32;
+			this->label14->Text = L"X:";
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Location = System::Drawing::Point(444, 336);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(19, 16);
+			this->label15->TabIndex = 33;
+			this->label15->Text = L"Y:";
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Location = System::Drawing::Point(420, 378);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(42, 16);
+			this->label16->TabIndex = 34;
+			this->label16->Text = L"Color:";
+			// 
+			// label18
+			// 
+			this->label18->AutoSize = true;
+			this->label18->Location = System::Drawing::Point(420, 418);
+			this->label18->Name = L"label18";
+			this->label18->Size = System::Drawing::Size(36, 16);
+			this->label18->TabIndex = 36;
+			this->label18->Text = L"Text:";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
-			this->ClientSize = System::Drawing::Size(670, 515);
+			this->ClientSize = System::Drawing::Size(670, 602);
+			this->Controls->Add(this->label18);
+			this->Controls->Add(this->label16);
+			this->Controls->Add(this->label15);
+			this->Controls->Add(this->label14);
+			this->Controls->Add(this->textBoxTextLines);
+			this->Controls->Add(this->textBoxTextColorLines);
+			this->Controls->Add(this->textBoxTextLinesY);
+			this->Controls->Add(this->textBoxTextLinesX);
+			this->Controls->Add(this->btnDrawTextWithLines);
+			this->Controls->Add(this->label13);
+			this->Controls->Add(this->label12);
 			this->Controls->Add(this->label11);
 			this->Controls->Add(this->textBoxClockFontSize);
 			this->Controls->Add(this->label10);
@@ -1271,7 +1405,53 @@ namespace GraphicsController {
 		}
 	}
 
-    
-	
+    private: System::Void btnDrawTextWithLines_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			
+			int x0 = Convert::ToInt32(this->textBoxTextLinesX->Text);
+			int y0 = Convert::ToInt32(this->textBoxTextLinesY->Text);
+			int color = Convert::ToInt32(this->textBoxTextColorLines->Text, 16);
+			String^ text = this->textBoxTextLines->Text;
+
+			
+			int fontSize = 50; 
+
+			
+			if (color < 0 || color > 0xFFFF) {
+				MessageBox::Show("Invalid color value. Please enter a valid 16-bit RGB565 color.", "Error");
+				return;
+			}
+
+			
+			int textLength = text->Length;
+
+			
+			array<Byte>^ packet = gcnew array<Byte>(8 + textLength);
+			packet[0] = 0x0E; 
+			packet[1] = (x0 >> 8) & 0xFF; 
+			packet[2] = x0 & 0xFF;        
+			packet[3] = (y0 >> 8) & 0xFF; 
+			packet[4] = y0 & 0xFF;       
+			packet[5] = (color >> 8) & 0xFF;
+			packet[6] = color & 0xFF;        
+			packet[7] = (fontSize & 0xFF);   
+
+			
+			for (int i = 0; i < textLength; i++) {
+				packet[8 + i] = (Byte)text[i]; 
+			}
+
+			
+			commandSender->SendCommand(packet);
+
+			MessageBox::Show("Draw Text with Lines command sent successfully!", "Success");
+		}
+		catch (FormatException^) {
+			MessageBox::Show("Please enter valid numeric values.", "Error");
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("An error occurred: " + ex->Message, "Error");
+		}
+    }
 };
 }

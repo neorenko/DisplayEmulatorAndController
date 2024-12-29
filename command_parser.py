@@ -80,6 +80,7 @@ class DrawEllipseCommand(Command):
         logger.info(f"Draw ellipse at ({self.x0}, {self.y0}), radius-x {self.radius_x}, radius-y {self.radius_y}, with color RGB565({self.color})")
         return {"x0": self.x0, "y0": self.y0, "radius_x": self.radius_x, "radius_y": self.radius_y, "color": self.color}
 
+
 class FillEllipseCommand(Command):
     def __init__(self, params):
         super().__init__(0x07)
@@ -233,10 +234,33 @@ class DrawClockCommand(Command):
             "color": self.color,
             "font_size": self.font_size
         }
-    
-#class DrawTextWithLinesCommand(Command):
-   
 
+
+class DrawTextWithLinesCommand(Command):
+    def __init__(self, params):
+        super().__init__(0x0E)  # Встановлюємо унікальний ID для команди
+        
+        if len(params) < 8:
+            raise ValueError("Insufficient bytes for Draw Text with Lines command.")
+        
+        self.x0, self.y0 = struct.unpack(">hh", params[:4])
+        self.color = self.parse_color(params[4:6])
+        self.font_size = params[6]  # Розмір шрифту
+        
+        # Визначаємо фактичну довжину тексту
+        self.text = params[7:].decode('utf-8', errors='ignore')  # Декодуємо весь текст
+        logger.info(f"Parsed values: x0={self.x0}, y0={self.y0}, color={self.color}, font_size={self.font_size}px, text='{self.text}'")
+
+    def execute(self):
+        logger.info(f"Draw text with lines '{self.text}' at ({self.x0}, {self.y0}) with color RGB565({self.color}), font size {self.font_size}")
+        return {
+            "x0": self.x0,
+            "y0": self.y0,
+            "color": self.color,
+            "font_size": self.font_size,
+            "text": self.text
+        }
+   
 
 class DisplayCommandParser:
     def __init__(self):
@@ -263,7 +287,7 @@ class DisplayCommandParser:
             0x0B: FillRoundedRectangleCommand,
             0x0C: DrawTextCommand,
             0x0D: DrawClockCommand,
-            #0x0E: DrawTextWithLinesCommand
+            0x0E: DrawTextWithLinesCommand
         }
 
         self.expected_lengths = {
@@ -280,7 +304,7 @@ class DisplayCommandParser:
             0x0B: 12, 
             0x0C: None, 
             0x0D: 7,
-            #0x0E: None
+            0x0E: None
         }
 
     def parse(self, byte_array):
