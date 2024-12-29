@@ -1,0 +1,6 @@
+C:\Users\User\source\repos\GraphicsController\GraphicsController\x64\Debug\GraphicsController.vcxproj.AssemblyReference.cache
+C:\Users\User\source\repos\GraphicsController\GraphicsController\x64\Debug\GraphicsController.MyForm.resources
+C:\Users\User\source\repos\GraphicsController\GraphicsController\x64\Debug\GraphicsController.vcxproj.GenerateResource.cache
+C:\dev\protocol\GraphicsController\GraphicsController\x64\Debug\GraphicsController.vcxproj.AssemblyReference.cache
+C:\dev\protocol\GraphicsController\GraphicsController\x64\Debug\GraphicsController.MyForm.resources
+C:\dev\protocol\GraphicsController\GraphicsController\x64\Debug\GraphicsController.vcxproj.GenerateResource.cache

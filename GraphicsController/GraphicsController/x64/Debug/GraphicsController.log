@@ -1,0 +1,10 @@
+﻿  CommandSender.cpp
+  GraphicsLib.cpp
+  MyForm.cpp
+C:\dev\protocol\GraphicsController\GraphicsController\GraphicsLib.cpp(168,83): warning C4244: '=': conversion from 'double' to 'long', possible loss of data
+C:\dev\protocol\GraphicsController\GraphicsController\GraphicsLib.cpp(227,83): warning C4244: '=': conversion from 'double' to 'long', possible loss of data
+C:\dev\protocol\GraphicsController\GraphicsController\MyForm.cpp(6,6): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Generating Code...
+  CommandSender.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  GraphicsController.vcxproj -> C:\dev\protocol\GraphicsController\x64\Debug\GraphicsController.exe
