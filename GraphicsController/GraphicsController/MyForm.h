@@ -53,6 +53,15 @@ namespace GraphicsController {
 			this->textBox6->Visible = false;
 			this->button1->Visible = false;
 
+			// Додаємо елементи до ComboBox
+			this->comboBoxOrientation->Items->Add("0 - Portrait");
+			this->comboBoxOrientation->Items->Add("1 - Landscape");
+			this->comboBoxOrientation->Items->Add("2 ");
+			this->comboBoxOrientation->Items->Add("3 ");
+
+			// Встановлюємо перший елемент як вибраний
+			this->comboBoxOrientation->SelectedIndex = 0;
+
 		}
 	private: System::Windows::Forms::Label^ label2;
 	public:
@@ -94,6 +103,17 @@ namespace GraphicsController {
 	private: System::Windows::Forms::Label^ label16;
 
 	private: System::Windows::Forms::Label^ label18;
+	private: System::Windows::Forms::ComboBox^ comboBoxOrientation;
+	private: System::Windows::Forms::Button^ btnSetOrientation;
+	private: System::Windows::Forms::Button^ btnSetWidth;
+	private: System::Windows::Forms::TextBox^ textBoxWidth;
+	private: System::Windows::Forms::Label^ label17;
+	private: System::Windows::Forms::Button^ btnSetHeight;
+	private: System::Windows::Forms::Label^ label19;
+	private: System::Windows::Forms::TextBox^ textBoxHeight;
+
+
+
 
 
 
@@ -174,6 +194,14 @@ namespace GraphicsController {
 			this->label15 = (gcnew System::Windows::Forms::Label());
 			this->label16 = (gcnew System::Windows::Forms::Label());
 			this->label18 = (gcnew System::Windows::Forms::Label());
+			this->comboBoxOrientation = (gcnew System::Windows::Forms::ComboBox());
+			this->btnSetOrientation = (gcnew System::Windows::Forms::Button());
+			this->btnSetWidth = (gcnew System::Windows::Forms::Button());
+			this->textBoxWidth = (gcnew System::Windows::Forms::TextBox());
+			this->label17 = (gcnew System::Windows::Forms::Label());
+			this->btnSetHeight = (gcnew System::Windows::Forms::Button());
+			this->label19 = (gcnew System::Windows::Forms::Label());
+			this->textBoxHeight = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// commandComboBox
@@ -194,9 +222,9 @@ namespace GraphicsController {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(174, 435);
+			this->button1->Location = System::Drawing::Point(35, 418);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(153, 58);
+			this->button1->Size = System::Drawing::Size(192, 44);
 			this->button1->TabIndex = 2;
 			this->button1->Text = L"button1";
 			this->button1->UseVisualStyleBackColor = true;
@@ -466,10 +494,88 @@ namespace GraphicsController {
 			this->label18->TabIndex = 36;
 			this->label18->Text = L"Text:";
 			// 
+			// comboBoxOrientation
+			// 
+			this->comboBoxOrientation->FormattingEnabled = true;
+			this->comboBoxOrientation->Location = System::Drawing::Point(35, 499);
+			this->comboBoxOrientation->Name = L"comboBoxOrientation";
+			this->comboBoxOrientation->Size = System::Drawing::Size(121, 24);
+			this->comboBoxOrientation->TabIndex = 37;
+			// 
+			// btnSetOrientation
+			// 
+			this->btnSetOrientation->Location = System::Drawing::Point(35, 536);
+			this->btnSetOrientation->Name = L"btnSetOrientation";
+			this->btnSetOrientation->Size = System::Drawing::Size(219, 35);
+			this->btnSetOrientation->TabIndex = 38;
+			this->btnSetOrientation->Text = L"Змінити орієнтацію дисплея";
+			this->btnSetOrientation->UseVisualStyleBackColor = true;
+			this->btnSetOrientation->Click += gcnew System::EventHandler(this, &MyForm::btnSetOrientation_Click);
+			// 
+			// btnSetWidth
+			// 
+			this->btnSetWidth->Location = System::Drawing::Point(287, 573);
+			this->btnSetWidth->Name = L"btnSetWidth";
+			this->btnSetWidth->Size = System::Drawing::Size(128, 46);
+			this->btnSetWidth->TabIndex = 39;
+			this->btnSetWidth->Text = L"Змінити ширину диспплея";
+			this->btnSetWidth->UseVisualStyleBackColor = true;
+			this->btnSetWidth->Click += gcnew System::EventHandler(this, &MyForm::btnSetWidth_Click);
+			// 
+			// textBoxWidth
+			// 
+			this->textBoxWidth->Location = System::Drawing::Point(360, 533);
+			this->textBoxWidth->Name = L"textBoxWidth";
+			this->textBoxWidth->Size = System::Drawing::Size(96, 22);
+			this->textBoxWidth->TabIndex = 40;
+			// 
+			// label17
+			// 
+			this->label17->AutoSize = true;
+			this->label17->Location = System::Drawing::Point(284, 536);
+			this->label17->Name = L"label17";
+			this->label17->Size = System::Drawing::Size(61, 16);
+			this->label17->TabIndex = 41;
+			this->label17->Text = L"Ширина:";
+			// 
+			// btnSetHeight
+			// 
+			this->btnSetHeight->Location = System::Drawing::Point(488, 573);
+			this->btnSetHeight->Name = L"btnSetHeight";
+			this->btnSetHeight->Size = System::Drawing::Size(126, 46);
+			this->btnSetHeight->TabIndex = 42;
+			this->btnSetHeight->Text = L"Змінити висоту дисплея";
+			this->btnSetHeight->UseVisualStyleBackColor = true;
+			this->btnSetHeight->Click += gcnew System::EventHandler(this, &MyForm::btnSetHeight_Click);
+			// 
+			// label19
+			// 
+			this->label19->AutoSize = true;
+			this->label19->Location = System::Drawing::Point(488, 536);
+			this->label19->Name = L"label19";
+			this->label19->Size = System::Drawing::Size(57, 16);
+			this->label19->TabIndex = 43;
+			this->label19->Text = L"Висота:";
+			// 
+			// textBoxHeight
+			// 
+			this->textBoxHeight->Location = System::Drawing::Point(570, 536);
+			this->textBoxHeight->Name = L"textBoxHeight";
+			this->textBoxHeight->Size = System::Drawing::Size(98, 22);
+			this->textBoxHeight->TabIndex = 44;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
-			this->ClientSize = System::Drawing::Size(670, 602);
+			this->ClientSize = System::Drawing::Size(734, 665);
+			this->Controls->Add(this->textBoxHeight);
+			this->Controls->Add(this->label19);
+			this->Controls->Add(this->btnSetHeight);
+			this->Controls->Add(this->label17);
+			this->Controls->Add(this->textBoxWidth);
+			this->Controls->Add(this->btnSetWidth);
+			this->Controls->Add(this->btnSetOrientation);
+			this->Controls->Add(this->comboBoxOrientation);
 			this->Controls->Add(this->label18);
 			this->Controls->Add(this->label16);
 			this->Controls->Add(this->label15);
@@ -1305,7 +1411,6 @@ namespace GraphicsController {
 
 	}
 
-
 	private: System::Void btnStartClock_Click(System::Object^ sender, System::EventArgs^ e) {
 		 try {
 			 
@@ -1453,5 +1558,92 @@ namespace GraphicsController {
 			MessageBox::Show("An error occurred: " + ex->Message, "Error");
 		}
     }
+
+	private: System::Void btnSetOrientation_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			
+			String^ selectedItem = this->comboBoxOrientation->SelectedItem->ToString();
+
+			
+			int orientation = Convert::ToInt32(selectedItem->Substring(0, 1)); 
+			
+			if (orientation < 0 || orientation > 3) {
+				MessageBox::Show("Invalid orientation value. Please select a valid orientation (0-3).", "Error");
+				return;
+			}
+
+			array<Byte>^ packet = gcnew array<Byte>(2);
+			packet[0] = 0x0F; 
+			packet[1] = (Byte)orientation; 
+
+		
+			commandSender->SendCommand(packet);
+
+			MessageBox::Show("Set Orientation command sent successfully!", "Success");
+		}
+		catch (FormatException^) {
+			MessageBox::Show("Please select a valid orientation.", "Error");
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("An error occurred: " + ex->Message, "Error");
+		}
+	}
+    
+	private: System::Void btnSetWidth_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			int width = Convert::ToInt32(this->textBoxWidth->Text); 
+
+			
+			if (width <= 0) {
+				MessageBox::Show("Invalid width value. Please enter a positive integer.", "Error");
+				return;
+			}
+
+			array<Byte>^ packet = gcnew array<Byte>(3);
+			packet[0] = 0x10; 
+			packet[1] = (width >> 8) & 0xFF;
+			packet[2] = width & 0xFF; 
+
+			
+			commandSender->SendCommand(packet);
+
+			MessageBox::Show("Set Width command sent successfully!", "Success");
+		}
+		catch (FormatException^) {
+			MessageBox::Show("Please enter a valid numeric value for width.", "Error");
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("An error occurred: " + ex->Message, "Error");
+		}
+    }
+
+    private: System::Void btnSetHeight_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			int height = Convert::ToInt32(this->textBoxHeight->Text); 
+
+			if (height <= 0) {
+				MessageBox::Show("Invalid height value. Please enter a positive integer.", "Error");
+				return;
+			}
+
+			array<Byte>^ packet = gcnew array<Byte>(3);
+			packet[0] = 0x11; 
+			packet[1] = (height >> 8) & 0xFF; 
+			packet[2] = height & 0xFF; 
+
+			commandSender->SendCommand(packet);
+
+			MessageBox::Show("Set Height command sent successfully!", "Success");
+		}
+		catch (FormatException^) {
+			MessageBox::Show("Please enter a valid numeric value for height.", "Error");
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("An error occurred: " + ex->Message, "Error");
+		}
+    }
+
+
+   
 };
 }

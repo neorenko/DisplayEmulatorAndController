@@ -260,7 +260,42 @@ class DrawTextWithLinesCommand(Command):
             "font_size": self.font_size,
             "text": self.text
         }
-   
+
+class SetOrientationCommand(Command):
+    def __init__(self, params):
+        super().__init__(0x0F)  # Встановлюємо унікальний ID для команди
+        if len(params) != 1:
+            raise ValueError("Invalid parameters for Set Orientation command")
+        self.orientation = params[0]
+
+    def execute(self):
+        logger.info(f"Set orientation to {self.orientation}")
+        return {"orientation": self.orientation}
+
+
+class SetWidthCommand(Command):
+    def __init__(self, params):
+        super().__init__(0x10)  # Встановлюємо унікальний ID для команди
+        if len(params) != 2:
+            raise ValueError("Invalid parameters for Set Width command")
+        self.width = struct.unpack(">H", params)[0]
+
+    def execute(self):
+        logger.info(f"Set width to {self.width}")
+        return {"width": self.width}
+
+
+class SetHeightCommand(Command):
+    def __init__(self, params):
+        super().__init__(0x11)  # Встановлюємо унікальний ID для команди
+        if len(params) != 2:
+            raise ValueError("Invalid parameters for Set Height command")
+        self.height = struct.unpack(">H", params)[0]
+
+    def execute(self):
+        logger.info(f"Set height to {self.height}")
+        return {"height": self.height}
+
 
 class DisplayCommandParser:
     def __init__(self):
@@ -287,7 +322,10 @@ class DisplayCommandParser:
             0x0B: FillRoundedRectangleCommand,
             0x0C: DrawTextCommand,
             0x0D: DrawClockCommand,
-            0x0E: DrawTextWithLinesCommand
+            0x0E: DrawTextWithLinesCommand,
+            0x0F: SetOrientationCommand,
+            0x10: SetWidthCommand,
+            0x11: SetHeightCommand
         }
 
         self.expected_lengths = {
@@ -304,7 +342,10 @@ class DisplayCommandParser:
             0x0B: 12, 
             0x0C: None, 
             0x0D: 7,
-            0x0E: None
+            0x0E: None,
+            0x0F: 1,  
+            0x10: 2,   
+            0x11: 2   
         }
 
     def parse(self, byte_array):
