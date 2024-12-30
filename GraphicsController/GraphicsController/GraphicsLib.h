@@ -27,6 +27,7 @@ public:
     virtual int_least16_t drawChar(int_least16_t x, int_least16_t y, char c, uint_least16_t color, uint_least16_t bg, uint_least8_t size) = 0;
     virtual int_least16_t drawChar(int_least16_t x, int_least16_t y, unsigned char c, uint_least16_t color, uint_least16_t bg, uint_least8_t size) = 0;
     virtual int_least16_t drawText(int_least16_t x, int_least16_t y, const char* s, uint_least16_t color, uint_least16_t bg, uint_least8_t size) = 0;
+    
     virtual void loadSprite(uint_least8_t index, int_least16_t width, int_least16_t height, char* data) = 0;
     virtual void showSprite(uint_least8_t index, uint_least16_t x, uint_least16_t y) = 0;
 

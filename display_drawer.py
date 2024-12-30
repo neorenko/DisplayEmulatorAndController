@@ -10,7 +10,8 @@ class DisplayDrawer:
         self.draw = ImageDraw.Draw(self.image)
         
         self.default_font_size = 20  
-        self.font = ImageFont.truetype("arial.ttf", self.default_font_size) 
+        self.font = ImageFont.truetype("arial.ttf", self.default_font_size)
+        self.sprites = {}  
 
 
     def rgb565_to_rgb888(self, color565):
@@ -78,7 +79,6 @@ class DisplayDrawer:
         self.draw.text((x0, y0), text, fill=color, font=font)
         logging.info(f"Drew text '{text}' at ({x0}, {y0}) with color {color} and font size {font_size}")
  
-
     def draw_text_with_lines(self, x0, y0, text, color, font_size):
         color = self.rgb565_to_rgb888(color)
     
@@ -299,3 +299,54 @@ class DisplayDrawer:
 
     def get_image(self):
         return self.image
+    
+    def load_sprite(self, index, width, height, data):
+        """Завантажує спрайт за індексом."""
+        if index not in self.sprites:
+            self.sprites[index] = Image.new('RGB', (width, height))
+    
+        sprite_image = self.sprites[index]
+    
+        expected_length = width * height * 2  
+        if len(data) != expected_length:
+           raise ValueError(f"Data length {len(data)} does not match expected length {expected_length} for sprite of size {width}x{height}.")
+    
+        rgb_data = []
+        for i in range(0, len(data), 2):
+            r = (data[i] & 0xF8)  
+            g = ((data[i] & 0x07) << 5) | ((data[i + 1] & 0xE0) >> 3) 
+            b = (data[i + 1] & 0x1F) << 3  
+            rgb_data.append((r, g, b))
+
+        sprite_image.putdata(rgb_data)  
+        logging.info(f"Loaded sprite at index {index} with size {width}x{height}")
+
+    def show_sprite(self, index, x, y):
+        """Відображає спрайт на координатах (x, y)."""
+        if index in self.sprites:
+            sprite_image = self.sprites[index]
+            self.image.paste(sprite_image, (x, y))  
+            logging.info(f"Displayed sprite at index {index} at position ({x}, {y})")
+        else:
+            logging.warning(f"Sprite index {index} not found.")
+
+    def draw_marquee_text(self, y0, text, color, font_size, canvas):
+        color = self.rgb565_to_rgb888(color)
+        try:
+           font = ImageFont.truetype("arial.ttf", font_size) if font_size else self.font
+        except IOError:
+           logging.error("Font file not found. Using default font.")
+           font = self.font
+
+    
+        text_bbox = self.draw.textbbox((0, 0), text, font=font)
+        text_width = text_bbox[2] - text_bbox[0]  
+
+        
+        for x in range(self.width, -text_width, -5): 
+           self.image = Image.new('RGB', (self.width, self.height), 'black')  
+           self.draw = ImageDraw.Draw(self.image)
+           self.draw.text((x, y0), text, fill=color, font=font)
+           yield self.image  
+
+     

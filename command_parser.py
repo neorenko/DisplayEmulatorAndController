@@ -261,6 +261,7 @@ class DrawTextWithLinesCommand(Command):
             "text": self.text
         }
 
+
 class SetOrientationCommand(Command):
     def __init__(self, params):
         super().__init__(0x0F)  # Встановлюємо унікальний ID для команди
@@ -297,6 +298,62 @@ class SetHeightCommand(Command):
         return {"height": self.height}
 
 
+class LoadSpriteCommand(Command):
+    def __init__(self, params):
+        super().__init__(0x12)  
+        self.index, self.width, self.height = struct.unpack(">BHH", params[:5])
+        self.data = params[5:]
+
+    def execute(self):
+        logger.info(f"Load sprite at index {self.index}, size {self.width}x{self.height}")
+        return {
+            "index": self.index,
+            "width": self.width,
+            "height": self.height,
+            "data": self.data
+        }
+
+
+class ShowSpriteCommand(Command):
+    def __init__(self, params):
+        super().__init__(0x13)  
+        self.index, self.x, self.y = struct.unpack(">Bhh", params[:7])
+
+    def execute(self):
+        logger.info(f"Show sprite at index {self.index} at position ({self.x}, {self.y})")
+        return {
+            "index": self.index,
+            "x": self.x,
+            "y": self.y
+        }
+
+
+class DrawMarqueeTextCommand(Command):
+    def __init__(self, params):
+        super().__init__(0x14) 
+        if len(params) < 8: 
+            raise ValueError("Insufficient bytes for Draw Marquee Text command.")
+        
+        self.y0 = struct.unpack(">h", params[:2])[0]  # Отримуємо координату y
+        self.color = self.parse_color(params[2:4])  # Отримуємо колір
+        self.font_size = params[4]  # Розмір шрифту
+        text_length = params[5]  # Довжина тексту
+        
+        if len(params) < 6 + text_length:  # Перевірка на достатню кількість байтів для тексту
+            raise ValueError("Insufficient bytes for Draw Marquee Text command, not enough bytes for text.")
+        
+        self.text = params[6:6 + text_length].decode('utf-8', errors='ignore') 
+
+    def execute(self):
+        logger.info(f"Draw marquee text '{self.text}' at y={self.y0} with color RGB565({self.color}), font size {self.font_size}")
+        return {
+            "y0": self.y0,
+            "color": self.color,
+            "font_size": self.font_size,
+            "text": self.text
+        }
+
+
 class DisplayCommandParser:
     def __init__(self):
         self.logger = logging.getLogger('command_parser')
@@ -325,7 +382,10 @@ class DisplayCommandParser:
             0x0E: DrawTextWithLinesCommand,
             0x0F: SetOrientationCommand,
             0x10: SetWidthCommand,
-            0x11: SetHeightCommand
+            0x11: SetHeightCommand,
+            0x12: LoadSpriteCommand,
+            0x13: ShowSpriteCommand,
+            0x14: DrawMarqueeTextCommand,
         }
 
         self.expected_lengths = {
@@ -345,7 +405,10 @@ class DisplayCommandParser:
             0x0E: None,
             0x0F: 1,  
             0x10: 2,   
-            0x11: 2   
+            0x11: 2,  
+            0x12: None,  
+            0x13: 5,
+            0x14: None,
         }
 
     def parse(self, byte_array):

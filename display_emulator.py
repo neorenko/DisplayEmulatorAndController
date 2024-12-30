@@ -2,6 +2,7 @@ import tkinter as tk
 import logging
 import datetime
 import struct
+import time
 from tkinter import ttk
 from PIL import Image, ImageDraw, ImageTk, ImageFont
 from udp_server import UDPServer
@@ -13,6 +14,7 @@ class DisplayEmulator:
     def __init__(self, width=1024, height=768):
         self.width = width
         self.height = height
+        self.marquee_generator = None  
 
         # Налаштування UDP сервера
         self.HOST = '127.0.0.1'
@@ -82,6 +84,27 @@ class DisplayEmulator:
         now = datetime.datetime.now()
         return now.strftime("%H:%M:%S")
 
+    def start_marquee_animation(self, y0, text, color, font_size):
+      
+        self.marquee_generator = self.display_drawer.draw_marquee_text(y0, text, color, font_size, self.canvas)
+    
+        def animate():
+            try:
+               
+               frame = next(self.marquee_generator)
+            
+             
+               self.display_drawer.image = frame
+               self.update_display()
+            
+               
+               self.root.after(200, animate)  
+            except StopIteration:
+               logging.info("Marquee animation finished")
+               return
+    
+        animate()
+    
     def handle_udp_command(self, command_data):
         """Обробка отриманих команд через UDP."""
         self.root.after(0, lambda: self.process_command(command_data))
@@ -170,24 +193,37 @@ class DisplayEmulator:
         elif command_id == 0x11:  # Set Height
             height = command_data.get("height")
             self.height = height  
-            self.update_display()  
+            self.update_display() 
+
+        elif command_id == 0x12:  # Load Sprite
+            index = command_data['index']
+            width = command_data['width']
+            height = command_data['height']
+            data = command_data['data']
+            self.display_drawer.load_sprite(index, width, height, data)
+
+        
+        elif command_id == 0x13:  # Show Sprite
+           index = command_data['index']
+           x = command_data['x']
+           y = command_data['y']
+           self.display_drawer.show_sprite(index, x, y) 
+
+        elif command_id == 0x14:  # Draw Marquee Text
+          y0 = command_data['y0']
+          color = command_data['color']
+          font_size = command_data['font_size']
+          text = command_data['text']
+           
+          self.start_marquee_animation(y0, text, color, font_size)
         
         self.update_display()
 
     def update_display(self):
-        print(f"Updating display to size: {self.width}x{self.height}")
-        
-        self.root.geometry(f"{self.width}x{self.height}")
-        
-        self.canvas.config(width=self.width, height=self.height)
-        
-        self.canvas.delete("all")
-
-        image = self.display_drawer.get_image()
-        image_tk = ImageTk.PhotoImage(image)
-        
-        self.canvas.create_image(0, 0, anchor="nw", image=image_tk)
-        self.canvas._image = image_tk  
+       self.canvas.delete("all")  
+       image = self.display_drawer.get_image()
+       self.image_tk = ImageTk.PhotoImage(image)  
+       self.canvas.create_image(0, 0, anchor="nw", image=self.image_tk)
     
     def on_closing(self):
         """Обробник закриття вікна"""

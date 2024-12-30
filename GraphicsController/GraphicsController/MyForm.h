@@ -1,6 +1,7 @@
 #pragma once
 #include "CommandSender.h"
 #include <thread>
+#include "GraphicsLib.cpp"
 
 namespace GraphicsController {
 
@@ -111,6 +112,39 @@ namespace GraphicsController {
 	private: System::Windows::Forms::Button^ btnSetHeight;
 	private: System::Windows::Forms::Label^ label19;
 	private: System::Windows::Forms::TextBox^ textBoxHeight;
+	private: System::Windows::Forms::Button^ btnCreateSprite;
+	private: System::Windows::Forms::Button^ btnShowSprite;
+	private: System::Windows::Forms::TextBox^ textBoxSpriteIndex;
+	private: System::Windows::Forms::TextBox^ textBoxShowSpriteIndex;
+	private: System::Windows::Forms::TextBox^ textBoxShowSpriteX;
+private: System::Windows::Forms::TextBox^ textBoxShowSpriteY;
+private: System::Windows::Forms::TextBox^ textBoxSpriteWidth;
+private: System::Windows::Forms::TextBox^ textBoxSpriteHeight;
+private: System::Windows::Forms::Label^ label20;
+private: System::Windows::Forms::Label^ label21;
+private: System::Windows::Forms::Label^ label22;
+private: System::Windows::Forms::Label^ label23;
+private: System::Windows::Forms::Label^ label24;
+private: System::Windows::Forms::Label^ label25;
+private: System::Windows::Forms::Label^ label26;
+private: System::Windows::Forms::TextBox^ textBoxMarqueeY;
+private: System::Windows::Forms::TextBox^ textBoxFontSize;
+private: System::Windows::Forms::TextBox^ textBoxMarqueeText;
+private: System::Windows::Forms::Label^ label27;
+private: System::Windows::Forms::Label^ label28;
+private: System::Windows::Forms::Label^ label29;
+private: System::Windows::Forms::Label^ label30;
+private: System::Windows::Forms::Button^ btnSendMarqueeText;
+private: System::Windows::Forms::Label^ label31;
+private: System::Windows::Forms::TextBox^ textBoxMarqueeTextColor;
+
+
+
+
+
+
+
+
 
 
 
@@ -202,6 +236,31 @@ namespace GraphicsController {
 			this->btnSetHeight = (gcnew System::Windows::Forms::Button());
 			this->label19 = (gcnew System::Windows::Forms::Label());
 			this->textBoxHeight = (gcnew System::Windows::Forms::TextBox());
+			this->btnCreateSprite = (gcnew System::Windows::Forms::Button());
+			this->btnShowSprite = (gcnew System::Windows::Forms::Button());
+			this->textBoxSpriteIndex = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxShowSpriteIndex = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxShowSpriteX = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxShowSpriteY = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxSpriteWidth = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxSpriteHeight = (gcnew System::Windows::Forms::TextBox());
+			this->label20 = (gcnew System::Windows::Forms::Label());
+			this->label21 = (gcnew System::Windows::Forms::Label());
+			this->label22 = (gcnew System::Windows::Forms::Label());
+			this->label23 = (gcnew System::Windows::Forms::Label());
+			this->label24 = (gcnew System::Windows::Forms::Label());
+			this->label25 = (gcnew System::Windows::Forms::Label());
+			this->label26 = (gcnew System::Windows::Forms::Label());
+			this->textBoxMarqueeY = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxFontSize = (gcnew System::Windows::Forms::TextBox());
+			this->textBoxMarqueeText = (gcnew System::Windows::Forms::TextBox());
+			this->label27 = (gcnew System::Windows::Forms::Label());
+			this->label28 = (gcnew System::Windows::Forms::Label());
+			this->label29 = (gcnew System::Windows::Forms::Label());
+			this->label30 = (gcnew System::Windows::Forms::Label());
+			this->btnSendMarqueeText = (gcnew System::Windows::Forms::Button());
+			this->label31 = (gcnew System::Windows::Forms::Label());
+			this->textBoxMarqueeTextColor = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// commandComboBox
@@ -497,14 +556,14 @@ namespace GraphicsController {
 			// comboBoxOrientation
 			// 
 			this->comboBoxOrientation->FormattingEnabled = true;
-			this->comboBoxOrientation->Location = System::Drawing::Point(35, 499);
+			this->comboBoxOrientation->Location = System::Drawing::Point(12, 533);
 			this->comboBoxOrientation->Name = L"comboBoxOrientation";
 			this->comboBoxOrientation->Size = System::Drawing::Size(121, 24);
 			this->comboBoxOrientation->TabIndex = 37;
 			// 
 			// btnSetOrientation
 			// 
-			this->btnSetOrientation->Location = System::Drawing::Point(35, 536);
+			this->btnSetOrientation->Location = System::Drawing::Point(12, 570);
 			this->btnSetOrientation->Name = L"btnSetOrientation";
 			this->btnSetOrientation->Size = System::Drawing::Size(219, 35);
 			this->btnSetOrientation->TabIndex = 38;
@@ -514,7 +573,7 @@ namespace GraphicsController {
 			// 
 			// btnSetWidth
 			// 
-			this->btnSetWidth->Location = System::Drawing::Point(287, 573);
+			this->btnSetWidth->Location = System::Drawing::Point(250, 607);
 			this->btnSetWidth->Name = L"btnSetWidth";
 			this->btnSetWidth->Size = System::Drawing::Size(128, 46);
 			this->btnSetWidth->TabIndex = 39;
@@ -524,7 +583,7 @@ namespace GraphicsController {
 			// 
 			// textBoxWidth
 			// 
-			this->textBoxWidth->Location = System::Drawing::Point(360, 533);
+			this->textBoxWidth->Location = System::Drawing::Point(323, 567);
 			this->textBoxWidth->Name = L"textBoxWidth";
 			this->textBoxWidth->Size = System::Drawing::Size(96, 22);
 			this->textBoxWidth->TabIndex = 40;
@@ -532,7 +591,7 @@ namespace GraphicsController {
 			// label17
 			// 
 			this->label17->AutoSize = true;
-			this->label17->Location = System::Drawing::Point(284, 536);
+			this->label17->Location = System::Drawing::Point(247, 570);
 			this->label17->Name = L"label17";
 			this->label17->Size = System::Drawing::Size(61, 16);
 			this->label17->TabIndex = 41;
@@ -540,7 +599,7 @@ namespace GraphicsController {
 			// 
 			// btnSetHeight
 			// 
-			this->btnSetHeight->Location = System::Drawing::Point(488, 573);
+			this->btnSetHeight->Location = System::Drawing::Point(433, 607);
 			this->btnSetHeight->Name = L"btnSetHeight";
 			this->btnSetHeight->Size = System::Drawing::Size(126, 46);
 			this->btnSetHeight->TabIndex = 42;
@@ -551,7 +610,7 @@ namespace GraphicsController {
 			// label19
 			// 
 			this->label19->AutoSize = true;
-			this->label19->Location = System::Drawing::Point(488, 536);
+			this->label19->Location = System::Drawing::Point(433, 570);
 			this->label19->Name = L"label19";
 			this->label19->Size = System::Drawing::Size(57, 16);
 			this->label19->TabIndex = 43;
@@ -559,15 +618,248 @@ namespace GraphicsController {
 			// 
 			// textBoxHeight
 			// 
-			this->textBoxHeight->Location = System::Drawing::Point(570, 536);
+			this->textBoxHeight->Location = System::Drawing::Point(515, 570);
 			this->textBoxHeight->Name = L"textBoxHeight";
 			this->textBoxHeight->Size = System::Drawing::Size(98, 22);
 			this->textBoxHeight->TabIndex = 44;
 			// 
+			// btnCreateSprite
+			// 
+			this->btnCreateSprite->Location = System::Drawing::Point(732, 152);
+			this->btnCreateSprite->Name = L"btnCreateSprite";
+			this->btnCreateSprite->Size = System::Drawing::Size(115, 23);
+			this->btnCreateSprite->TabIndex = 45;
+			this->btnCreateSprite->Text = L"CreateSprite";
+			this->btnCreateSprite->UseVisualStyleBackColor = true;
+			this->btnCreateSprite->Click += gcnew System::EventHandler(this, &MyForm::btnCreateSprite_Click);
+			// 
+			// btnShowSprite
+			// 
+			this->btnShowSprite->Location = System::Drawing::Point(732, 291);
+			this->btnShowSprite->Name = L"btnShowSprite";
+			this->btnShowSprite->Size = System::Drawing::Size(115, 23);
+			this->btnShowSprite->TabIndex = 46;
+			this->btnShowSprite->Text = L"Show Sprite";
+			this->btnShowSprite->UseVisualStyleBackColor = true;
+			this->btnShowSprite->Click += gcnew System::EventHandler(this, &MyForm::btnShowSprite_Click);
+			// 
+			// textBoxSpriteIndex
+			// 
+			this->textBoxSpriteIndex->Location = System::Drawing::Point(747, 41);
+			this->textBoxSpriteIndex->Name = L"textBoxSpriteIndex";
+			this->textBoxSpriteIndex->Size = System::Drawing::Size(100, 22);
+			this->textBoxSpriteIndex->TabIndex = 47;
+			// 
+			// textBoxShowSpriteIndex
+			// 
+			this->textBoxShowSpriteIndex->Location = System::Drawing::Point(747, 200);
+			this->textBoxShowSpriteIndex->Name = L"textBoxShowSpriteIndex";
+			this->textBoxShowSpriteIndex->Size = System::Drawing::Size(100, 22);
+			this->textBoxShowSpriteIndex->TabIndex = 48;
+			// 
+			// textBoxShowSpriteX
+			// 
+			this->textBoxShowSpriteX->Location = System::Drawing::Point(747, 228);
+			this->textBoxShowSpriteX->Name = L"textBoxShowSpriteX";
+			this->textBoxShowSpriteX->Size = System::Drawing::Size(100, 22);
+			this->textBoxShowSpriteX->TabIndex = 49;
+			// 
+			// textBoxShowSpriteY
+			// 
+			this->textBoxShowSpriteY->Location = System::Drawing::Point(747, 260);
+			this->textBoxShowSpriteY->Name = L"textBoxShowSpriteY";
+			this->textBoxShowSpriteY->Size = System::Drawing::Size(100, 22);
+			this->textBoxShowSpriteY->TabIndex = 50;
+			// 
+			// textBoxSpriteWidth
+			// 
+			this->textBoxSpriteWidth->Location = System::Drawing::Point(747, 77);
+			this->textBoxSpriteWidth->Name = L"textBoxSpriteWidth";
+			this->textBoxSpriteWidth->Size = System::Drawing::Size(100, 22);
+			this->textBoxSpriteWidth->TabIndex = 51;
+			// 
+			// textBoxSpriteHeight
+			// 
+			this->textBoxSpriteHeight->Location = System::Drawing::Point(747, 112);
+			this->textBoxSpriteHeight->Name = L"textBoxSpriteHeight";
+			this->textBoxSpriteHeight->Size = System::Drawing::Size(100, 22);
+			this->textBoxSpriteHeight->TabIndex = 52;
+			// 
+			// label20
+			// 
+			this->label20->AutoSize = true;
+			this->label20->Location = System::Drawing::Point(661, 44);
+			this->label20->Name = L"label20";
+			this->label20->Size = System::Drawing::Size(80, 16);
+			this->label20->TabIndex = 53;
+			this->label20->Text = L"Sprite Index:";
+			// 
+			// label21
+			// 
+			this->label21->AutoSize = true;
+			this->label21->Location = System::Drawing::Point(659, 80);
+			this->label21->Name = L"label21";
+			this->label21->Size = System::Drawing::Size(82, 16);
+			this->label21->TabIndex = 54;
+			this->label21->Text = L"Sprite Width:";
+			// 
+			// label22
+			// 
+			this->label22->AutoSize = true;
+			this->label22->Location = System::Drawing::Point(661, 112);
+			this->label22->Name = L"label22";
+			this->label22->Size = System::Drawing::Size(87, 16);
+			this->label22->TabIndex = 55;
+			this->label22->Text = L"Sprite Height:";
+			// 
+			// label23
+			// 
+			this->label23->AutoSize = true;
+			this->label23->Location = System::Drawing::Point(659, 206);
+			this->label23->Name = L"label23";
+			this->label23->Size = System::Drawing::Size(80, 16);
+			this->label23->TabIndex = 56;
+			this->label23->Text = L"Sprite Index:";
+			// 
+			// label24
+			// 
+			this->label24->AutoSize = true;
+			this->label24->Location = System::Drawing::Point(662, 238);
+			this->label24->Name = L"label24";
+			this->label24->Size = System::Drawing::Size(56, 16);
+			this->label24->TabIndex = 57;
+			this->label24->Text = L"Sprite X:";
+			// 
+			// label25
+			// 
+			this->label25->AutoSize = true;
+			this->label25->Location = System::Drawing::Point(662, 265);
+			this->label25->Name = L"label25";
+			this->label25->Size = System::Drawing::Size(57, 16);
+			this->label25->TabIndex = 58;
+			this->label25->Text = L"Sprite Y:";
+			// 
+			// label26
+			// 
+			this->label26->AutoSize = true;
+			this->label26->Location = System::Drawing::Point(632, 13);
+			this->label26->Name = L"label26";
+			this->label26->Size = System::Drawing::Size(238, 16);
+			this->label26->TabIndex = 59;
+			this->label26->Text = L"Створення і відображення спрайтів";
+			// 
+			// textBoxMarqueeY
+			// 
+			this->textBoxMarqueeY->Location = System::Drawing::Point(732, 359);
+			this->textBoxMarqueeY->Name = L"textBoxMarqueeY";
+			this->textBoxMarqueeY->Size = System::Drawing::Size(100, 22);
+			this->textBoxMarqueeY->TabIndex = 60;
+			// 
+			// textBoxFontSize
+			// 
+			this->textBoxFontSize->Location = System::Drawing::Point(732, 402);
+			this->textBoxFontSize->Name = L"textBoxFontSize";
+			this->textBoxFontSize->Size = System::Drawing::Size(100, 22);
+			this->textBoxFontSize->TabIndex = 61;
+			// 
+			// textBoxMarqueeText
+			// 
+			this->textBoxMarqueeText->Location = System::Drawing::Point(732, 446);
+			this->textBoxMarqueeText->Name = L"textBoxMarqueeText";
+			this->textBoxMarqueeText->Size = System::Drawing::Size(100, 22);
+			this->textBoxMarqueeText->TabIndex = 62;
+			// 
+			// label27
+			// 
+			this->label27->AutoSize = true;
+			this->label27->Location = System::Drawing::Point(653, 365);
+			this->label27->Name = L"label27";
+			this->label27->Size = System::Drawing::Size(26, 16);
+			this->label27->TabIndex = 63;
+			this->label27->Text = L"Y0:";
+			// 
+			// label28
+			// 
+			this->label28->AutoSize = true;
+			this->label28->Location = System::Drawing::Point(652, 405);
+			this->label28->Name = L"label28";
+			this->label28->Size = System::Drawing::Size(65, 16);
+			this->label28->TabIndex = 64;
+			this->label28->Text = L"Font Size:";
+			// 
+			// label29
+			// 
+			this->label29->AutoSize = true;
+			this->label29->Location = System::Drawing::Point(652, 452);
+			this->label29->Name = L"label29";
+			this->label29->Size = System::Drawing::Size(36, 16);
+			this->label29->TabIndex = 65;
+			this->label29->Text = L"Text:";
+			// 
+			// label30
+			// 
+			this->label30->AutoSize = true;
+			this->label30->Location = System::Drawing::Point(655, 326);
+			this->label30->Name = L"label30";
+			this->label30->Size = System::Drawing::Size(188, 16);
+			this->label30->TabIndex = 66;
+			this->label30->Text = L"Створити анімований текст";
+			// 
+			// btnSendMarqueeText
+			// 
+			this->btnSendMarqueeText->Location = System::Drawing::Point(675, 525);
+			this->btnSendMarqueeText->Name = L"btnSendMarqueeText";
+			this->btnSendMarqueeText->Size = System::Drawing::Size(157, 39);
+			this->btnSendMarqueeText->TabIndex = 67;
+			this->btnSendMarqueeText->Text = L"Send Marquee Text";
+			this->btnSendMarqueeText->UseVisualStyleBackColor = true;
+			this->btnSendMarqueeText->Click += gcnew System::EventHandler(this, &MyForm::btnSendMarqueeText_Click);
+			// 
+			// label31
+			// 
+			this->label31->AutoSize = true;
+			this->label31->Location = System::Drawing::Point(655, 489);
+			this->label31->Name = L"label31";
+			this->label31->Size = System::Drawing::Size(42, 16);
+			this->label31->TabIndex = 68;
+			this->label31->Text = L"Color:";
+			// 
+			// textBoxMarqueeTextColor
+			// 
+			this->textBoxMarqueeTextColor->Location = System::Drawing::Point(732, 486);
+			this->textBoxMarqueeTextColor->Name = L"textBoxMarqueeTextColor";
+			this->textBoxMarqueeTextColor->Size = System::Drawing::Size(100, 22);
+			this->textBoxMarqueeTextColor->TabIndex = 69;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::None;
-			this->ClientSize = System::Drawing::Size(734, 665);
+			this->ClientSize = System::Drawing::Size(899, 665);
+			this->Controls->Add(this->textBoxMarqueeTextColor);
+			this->Controls->Add(this->label31);
+			this->Controls->Add(this->btnSendMarqueeText);
+			this->Controls->Add(this->label30);
+			this->Controls->Add(this->label29);
+			this->Controls->Add(this->label28);
+			this->Controls->Add(this->label27);
+			this->Controls->Add(this->textBoxMarqueeText);
+			this->Controls->Add(this->textBoxFontSize);
+			this->Controls->Add(this->textBoxMarqueeY);
+			this->Controls->Add(this->label26);
+			this->Controls->Add(this->label25);
+			this->Controls->Add(this->label24);
+			this->Controls->Add(this->label23);
+			this->Controls->Add(this->label22);
+			this->Controls->Add(this->label21);
+			this->Controls->Add(this->label20);
+			this->Controls->Add(this->textBoxSpriteHeight);
+			this->Controls->Add(this->textBoxSpriteWidth);
+			this->Controls->Add(this->textBoxShowSpriteY);
+			this->Controls->Add(this->textBoxShowSpriteX);
+			this->Controls->Add(this->textBoxShowSpriteIndex);
+			this->Controls->Add(this->textBoxSpriteIndex);
+			this->Controls->Add(this->btnShowSprite);
+			this->Controls->Add(this->btnCreateSprite);
 			this->Controls->Add(this->textBoxHeight);
 			this->Controls->Add(this->label19);
 			this->Controls->Add(this->btnSetHeight);
@@ -1642,8 +1934,125 @@ namespace GraphicsController {
 			MessageBox::Show("An error occurred: " + ex->Message, "Error");
 		}
     }
+    
+	private: System::Void btnCreateSprite_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			
+			int index = Convert::ToInt32(this->textBoxSpriteIndex->Text);
+			int width = Convert::ToInt32(this->textBoxSpriteWidth->Text);
+			int height = Convert::ToInt32(this->textBoxSpriteHeight->Text);
+
+			array<Byte>^ spriteData = gcnew array<Byte>(width * height * 2); 
+
+			for (int i = 0; i < width * height; i++) {
+				spriteData[i * 2] = 0xFF; 
+				spriteData[i * 2 + 1] = 0x00; 
+			}
+
+			
+			int packetSize = 6 + spriteData->Length; 
+			array<Byte>^ packet = gcnew array<Byte>(packetSize);
+			packet[0] = 0x12; 
+			packet[1] = (Byte)index; 
+			packet[2] = (width >> 8) & 0xFF; 
+			packet[3] = width & 0xFF; 
+			packet[4] = (height >> 8) & 0xFF; 
+			packet[5] = height & 0xFF; 
+
+			for (int i = 0; i < spriteData->Length; i++) {
+				packet[6 + i] = spriteData[i];
+			}
+
+			commandSender->SendCommand(packet);
+
+			MessageBox::Show("Sprite created and sent successfully!", "Success");
+		}
+		catch (FormatException^) {
+			MessageBox::Show("Please enter valid numeric values.", "Error");
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("An error occurred: " + ex->Message, "Error");
+		}
+	}
+
+	private: System::Void btnShowSprite_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			
+			int index = Convert::ToInt32(this->textBoxSpriteIndex->Text);
+			int x = Convert::ToInt32(this->textBoxShowSpriteX->Text); 
+			int y = Convert::ToInt32(this->textBoxShowSpriteY->Text); 
+
+			
+			array<Byte>^ packet = gcnew array<Byte>(6); 
+			packet[0] = 0x13; 
+			packet[1] = (Byte)index; 
+			packet[2] = (x >> 8) & 0xFF; 
+			packet[3] = x & 0xFF; 
+			packet[4] = (y >> 8) & 0xFF; 
+			packet[5] = y & 0xFF; 
+
+			// Send the command
+			commandSender->SendCommand(packet);
+
+			MessageBox::Show("Sprite shown successfully!", "Success");
+		}
+		catch (FormatException^) {
+			MessageBox::Show("Please enter valid numeric values.", "Error");
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("An error occurred: " + ex->Message, "Error");
+		}
+	}
+	
+	private: System::Void btnSendMarqueeText_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			// Отримуємо введені значення
+			int y0 = Convert::ToInt32(this->textBoxMarqueeY->Text);
+			int fontSize = Convert::ToInt32(this->textBoxFontSize->Text);
+			String^ text = this->textBoxMarqueeText->Text;
+
+			// Отримуємо введений колір у форматі RGB565
+			int color = Convert::ToInt32(this->textBoxMarqueeTextColor->Text, 16);
+
+			// Перетворюємо текст у байтовий масив
+			array<Byte>^ textBytes = System::Text::Encoding::UTF8->GetBytes(text);
+			int textLength = textBytes->Length;
+
+			// Перевірка на максимальну довжину тексту
+			if (textLength > 255) {
+				MessageBox::Show("Text length exceeds the maximum allowed length of 255 bytes.", "Error");
+				return;
+			}
+
+			// Створюємо пакет для команди
+			array<Byte>^ packet = gcnew array<Byte>(7 + textLength); 
+			packet[0] = 0x14; // ID команди для "рядка, що біжить"
+			packet[1] = (y0 >> 8) & 0xFF; // Високий байт координати Y
+			packet[2] = y0 & 0xFF; // Низький байт координати Y
+			packet[3] = (color >> 8) & 0xFF; // Високий байт кольору
+			packet[4] = color & 0xFF; // Низький байт кольору
+			packet[5] = (fontSize & 0xFF); // Розмір шрифту
+			packet[6] = (Byte)textLength; // Довжина тексту
+
+			// Копіюємо байти тексту в пакет
+			for (int i = 0; i < textLength; i++) {
+				packet[7 + i] = textBytes[i];
+			}
+
+			// Відправляємо команду
+			commandSender->SendCommand(packet);
+
+			MessageBox::Show("Marquee text sent successfully!", "Success");
+		}
+		catch (FormatException^) {
+			MessageBox::Show("Please enter valid numeric values.", "Error");
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show("An error occurred: " + ex->Message, "Error");
+		}
+	}
+    
 
 
-   
 };
 }

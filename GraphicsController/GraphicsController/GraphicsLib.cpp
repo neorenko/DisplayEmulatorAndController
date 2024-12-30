@@ -2,7 +2,8 @@
 #include "GraphicsLib.h"
 #include <vector>
 #include <cstdint>
-#include <cstring> // Для memcpy
+#include <cstring> 
+#include <memory>
 
 class GraphicsDrawer : public GraphicsLib {
 public:
@@ -307,44 +308,59 @@ public:
     }
 
 #define MAX_SPRITES 10
+#define DISPLAY_WIDTH 128  // Приклад ширини екрану
+#define DISPLAY_HEIGHT 64  // Приклад висоти екрану
 
     struct Sprite {
-        int_least16_t width;
-        int_least16_t height;
-        char* data;
+        int_least16_t width = 0;
+        int_least16_t height = 0;
+        std::unique_ptr<char[]> data = nullptr;
     };
 
-    Sprite sprites[MAX_SPRITES] = { 0 }; 
+    Sprite sprites[MAX_SPRITES];
 
-    void loadSprite(uint_least8_t index, int_least16_t width, int_least16_t height, char* data) {
-        if (index >= MAX_SPRITES) {
+    void loadSprite(uint_least8_t index, int_least16_t width, int_least16_t height, const char* data) {
+        if (index >= MAX_SPRITES || width <= 0 || height <= 0 || !data) {
             return; 
         }
 
-        
-        if (sprites[index].data) {
-            delete[] sprites[index].data;
-        }
+        sprites[index].data.reset();
 
-        
         sprites[index].width = width;
         sprites[index].height = height;
-        sprites[index].data = new char[width * height];
-        memcpy(sprites[index].data, data, width * height);
+        sprites[index].data = std::make_unique<char[]>(width * height);
+        std::memcpy(sprites[index].data.get(), data, width * height);
     }
 
     void showSprite(uint_least8_t index, uint_least16_t x, uint_least16_t y) {
         if (index >= MAX_SPRITES || !sprites[index].data) {
-            return; 
+            return; // Невірний індекс або спрайт не завантажено
         }
 
         for (int_least16_t j = 0; j < sprites[index].height; ++j) {
             for (int_least16_t i = 0; i < sprites[index].width; ++i) {
                 char pixel = sprites[index].data[j * sprites[index].width + i];
-                if (pixel != 0) { 
-                    drawPixel(x + i, y + j, static_cast<uint_least16_t>(pixel));
+
+                // Пропустити прозорий піксель (якщо "0" вважається прозорим)
+                if (pixel == 0) {
+                    continue;
                 }
+
+                // Перевірка меж екрану
+                if ((x + i) >= DISPLAY_WIDTH || (y + j) >= DISPLAY_HEIGHT) {
+                    continue;
+                }
+
+                // Відображення пікселя
+                drawPixel(x + i, y + j, static_cast<uint_least16_t>(pixel));
             }
+        }
+    }
+
+    // Очищення пам'яті всіх спрайтів
+    void clearAllSprites() {
+        for (int i = 0; i < MAX_SPRITES; ++i) {
+            sprites[i].data.reset();
         }
     }
 
